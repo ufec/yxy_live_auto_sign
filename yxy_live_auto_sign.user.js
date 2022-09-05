@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         优学院直播/保利威直播自动签到
 // @namespace    https://github.com/ufec/yxy_live_auto_sign
-// @version      0.0.1
+// @version      0.1.0
 // @description  顾名思义，fuck ulearning
 // @author       ufec
 // @homepage     https://github.com/ufec/yxy_live_auto_sign
@@ -16,13 +16,14 @@
 
 (function() {
   'use strict';
+  // 执行签到
   function execSign() {
     // 签到界面弹窗元素
     let signDialog = document.querySelector(
       '.plv-iar-btn-default.pws-btn-bg-color.pws-vclass-btn--primary',
     );
     if (signDialog == null) {
-      setTimeout(execSign, 2000);
+      setTimeout(execSign, 3000);
       return;
     }
     // 定位到具体签到Dialog
@@ -62,19 +63,27 @@
     });
   }
 
-  window.onload = function () {
+  // 检查网页是否加载了签到弹窗
+  function check() {
     const liveIframe = document.querySelector('#liveIframe');
-    if (liveIframe != null) {
-      // 等待iframe加载完成后跳转到iframe的页面
-      liveIframe.addEventListener('load', function () {
-        // 获取直播间页面地址
-        const polyvUrl = liveIframe.src;
-        console.log("保利威直播页面加载完成：", polyvUrl);
-        // 执行跳转
-        window.location.href = polyvUrl;
-      });
-    } else {
+    if (liveIframe == null) {
+      setTimeout(check, 3000);
+      return;
+    }
+    // 监听iframe加载完成
+    liveIframe.onload = () => {
+      // 跳转到iframe
+      window.location.href = liveIframe.src;
+    };
+    execSign();
+  }
+  window.onload = function () {
+    if (window.location.href.indexOf('live.polyv.cn') > -1) {
+      // 保利威直播
       execSign();
+    }else{
+      // 优学院直播
+      check();
     }
   };
 })();
