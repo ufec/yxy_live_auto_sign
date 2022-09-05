@@ -55,7 +55,7 @@
         });
       });
     }
-    console.log('开始监听签到弹窗');
+    alert('开始监听签到弹窗');
     window.polyvLiveAutoSignObserver.observe(signDialog, {
       attributes: true,
       attributeFilter: ['style'],
@@ -69,6 +69,7 @@
       liveIframe.addEventListener('load', function () {
         // 获取直播间页面地址
         const polyvUrl = liveIframe.src;
+        console.log("保利威直播页面加载完成：", polyvUrl);
         // 执行跳转
         window.location.href = polyvUrl;
       });
