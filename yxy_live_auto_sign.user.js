@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         yxy_live_auto_sign
 // @namespace    https://github.com/ufec/yxy_live_auto_sign
-// @version      0.1.2
+// @version      0.1.3
 // @description  优学院直播/保利威直播自动签到 fuck ulearning
 // @author       ufec
 // @license      MIT
@@ -43,7 +43,7 @@
     if (signButton == null) {
       return;
     }
-    if (!window.hasOwnProperty('polyvLiveAutoSignObserver')) {
+    if (!window.hasOwnProperty('polyvLiveAutoSignObserver') || !window.polyvLiveAutoSignObserver) {
       window.polyvLiveAutoSignObserver = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           console.log('mutation: ', mutation);
