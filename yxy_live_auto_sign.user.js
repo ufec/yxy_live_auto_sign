@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         yxy_live_auto_sign
 // @namespace    https://github.com/ufec/yxy_live_auto_sign
-// @version      0.1.1
+// @version      0.1.2
 // @description  优学院直播/保利威直播自动签到 fuck ulearning
 // @author       ufec
 // @license      MIT
