@@ -52,7 +52,12 @@
             'none'
           ) {
             signButton.click(); // 点击签到按钮
-            alert('签到成功');
+            const target = document.querySelector(".g-boundary.c-watch__main__inner"); // 目标元素
+            const newNode = document.createElement("p"); // 创建新元素
+            newNode.innerHTML = new Date().toLocaleString() + " 自动签到成功"; // 设置新元素内容
+            newNode.classList.add("g-boundary"); // 设置新元素样式
+            newNode.style = "color: #fff; padding: 5px 0;"; // 设置新元素样式
+            target.parentNode.insertBefore(newNode, target); // 插入到目标元素之前
           }
         });
       });
