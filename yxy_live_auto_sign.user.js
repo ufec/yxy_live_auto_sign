@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         yxy_live_auto_sign
 // @namespace    https://github.com/ufec/yxy_live_auto_sign
-// @version      0.1.3
+// @version      0.1.4
 // @description  优学院直播/保利威直播自动签到 fuck ulearning
 // @author       ufec
 // @license      MIT
@@ -40,30 +40,25 @@
           signButton = btn;
         }
       });
-    if (signButton == null) {
-      return;
-    }
-    if (!window.hasOwnProperty('polyvLiveAutoSignObserver') || !window.polyvLiveAutoSignObserver) {
-      window.polyvLiveAutoSignObserver = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-          console.log('mutation: ', mutation);
-          if (
-            window.getComputedStyle(mutation.target).getPropertyValue('display') !=
-            'none'
-          ) {
-            signButton.click(); // 点击签到按钮
-            const target = document.querySelector(".g-boundary.c-watch__main__inner"); // 目标元素
-            const newNode = document.createElement("p"); // 创建新元素
-            newNode.innerHTML = new Date().toLocaleString() + " 自动签到成功"; // 设置新元素内容
-            newNode.classList.add("g-boundary"); // 设置新元素样式
-            newNode.style = "color: #fff; padding: 5px 0;"; // 设置新元素样式
-            target.parentNode.insertBefore(newNode, target); // 插入到目标元素之前
-          }
-        });
+    const polyvLiveAutoSignObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        console.log('mutation: ', mutation);
+        if (
+          window.getComputedStyle(mutation.target).getPropertyValue('display') !=
+          'none'
+        ) {
+          signButton.click(); // 点击签到按钮
+          const target = document.querySelector(".g-boundary.c-watch__main__inner"); // 目标元素
+          const newNode = document.createElement("p"); // 创建新元素
+          newNode.innerHTML = new Date().toLocaleString() + " 自动签到成功"; // 设置新元素内容
+          newNode.classList.add("g-boundary"); // 设置新元素样式
+          newNode.style = "color: #fff; padding: 5px 0;"; // 设置新元素样式
+          target.parentNode.insertBefore(newNode, target); // 插入到目标元素之前
+        }
       });
-    }
-    alert('开始监听签到弹窗');
-    window.polyvLiveAutoSignObserver.observe(signDialog, {
+    });
+    alert('开始监听签到弹窗, flag is ' + String(polyvLiveAutoSignObserver instanceof MutationObserver));
+    polyvLiveAutoSignObserver.observe(signDialog, {
       attributes: true,
       attributeFilter: ['style'],
     });
@@ -92,4 +87,4 @@
       check();
     }
   };
-})();
+})(window);
