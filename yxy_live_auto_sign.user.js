@@ -1,17 +1,18 @@
 // ==UserScript==
-// @name         优学院直播/保利威直播自动签到
+// @name         yxy_live_auto_sign
 // @namespace    https://github.com/ufec/yxy_live_auto_sign
-// @version      0.1.0
-// @description  顾名思义，fuck ulearning
+// @version      0.1.1
+// @description  优学院直播/保利威直播自动签到 fuck ulearning
 // @author       ufec
+// @license      MIT
 // @homepage     https://github.com/ufec/yxy_live_auto_sign
 // @supportURL   https://github.com/ufec/yxy_live_auto_sign
 // @updateURL    https://ghproxy.com/https://raw.githubusercontent.com/ufec/yxy_live_auto_sign/main/yxy_live_auto_sign.user.js
 // @downloadURL  https://ghproxy.com/https://raw.githubusercontent.com/ufec/yxy_live_auto_sign/main/yxy_live_auto_sign.user.js
 // @match        https://live.polyv.cn/watch/*
 // @match        https://www.ulearning.cn/ulearning/live.html?channelId=*
-// @icon         https://www.google.com/s2/favicons?sz=64&domain=polyv.cn
-// @grant        none
+// @icon         https://static.ulearning.cn/static/course_web/common/img/appicon_2.0.png
+// @run-at       document-end
 // ==/UserScript==
 
 (function() {
